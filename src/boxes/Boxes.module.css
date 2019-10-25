@@ -1,0 +1,5 @@
+.box{
+  display: grid;
+  grid-template: auto;
+  border: .15rem solid black;
+}
