@@ -1,12 +1,14 @@
-import React from "react";
-import { Provider } from "react-redux";
-import setupStore from "./store/setupStore.js";
+import React from 'react';
+import Boxes from './boxes/Boxes'
+import styles from './App.module.css'
 
 function App() {
   return (
-    //<Provider store={setupStore()}>
-      <div>Yoooooo</div>
-    //</Provider>
+    <div className={styles.grid}>
+      <Boxes sectionName={'What Went Well'} />
+      <Boxes sectionName={'What Could Be Better'} />
+      <Boxes sectionName={'Questions'} />
+    </div>
   );
 }
 
