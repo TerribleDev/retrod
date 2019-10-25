@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { databaseRef } from '../store/firebase.js'
 import Item from '../Items/Items.js';
 import NewItem from '../NewItem/NewItem.js'
@@ -38,11 +38,19 @@ export function Cards({item, setItem}) {
 
 export default function FirebaseWrapper() {
   const [cards, setCards] = useState(null)
-  const retroRef = databaseRef.ref('retros/1');
-  retroRef.once('value', function(snapshot) {
-    const values = Object.values(snapshot.val())
-    setCards(values)
-  })
-  if(!cards) return (<div>loading...</div>);
+  const retroRef = useMemo(() => databaseRef.ref('retros/1'), []);
+  useEffect(() => {
+    retroRef.on('value', function(snapshot) {
+      const values = Object.values(snapshot.val())
+      setCards(values)
+    });
+    // this will be called when our component unmounts
+    return () => {
+      retroRef.off();
+    }
+  }, [retroRef]);
+  if(!cards) {
+    return <div>loading...</div>;
+  };
   return <Cards item={cards} setItem={()=> {}}/>
 }
