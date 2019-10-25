@@ -4,9 +4,9 @@ import setupStore from "./store/setupStore.js";
 
 function App() {
   return (
-    <Provider store={setupStore()}>
+    //<Provider store={setupStore()}>
       <div>Yoooooo</div>
-    </Provider>
+    //</Provider>
   );
 }
 
