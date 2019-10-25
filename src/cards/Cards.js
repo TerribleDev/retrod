@@ -1,27 +1,10 @@
 import React, { useState } from 'react';
+import { databaseRef } from '../store/firebase.js'
 import Item from '../Items/Items.js';
 import NewItem from '../NewItem/NewItem.js'
 import uuid from "uuid";
 
-export default function Cards({}) {
-
-  const [item, setItem] = useState([
-            {
-                title: "item 1",
-                completed: true,
-                id: uuid.v4()
-            },
-            {
-                title: "item 2",
-                completed: true,
-                id: uuid.v4()
-            },
-            {
-                title: "item 3",
-                completed: false,
-                id: uuid.v4()
-            }
-        ]);
+export function Cards({item, setItem}) {
 
         const addItem = title => {
           const newItem = [...item, {title, completed: false, id: uuid.v4()}];
@@ -52,3 +35,14 @@ export default function Cards({}) {
           </>
         )
       }
+
+export default function FirebaseWrapper() {
+  const [cards, setCards] = useState(null)
+  const retroRef = databaseRef.ref('retros/1');
+  retroRef.once('value', function(snapshot) {
+    const values = Object.values(snapshot.val())
+    setCards(values)
+  })
+  if(!cards) return (<div>loading...</div>);
+  return <Cards item={cards} setItem={()=> {}}/>
+}
