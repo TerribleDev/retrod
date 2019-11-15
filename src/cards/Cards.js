@@ -2,43 +2,37 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { databaseRef } from '../store/firebase.js'
 import Item from '../Items/Items.js';
 import NewItem from '../NewItem/NewItem.js'
-import uuid from "uuid";
 
-export function Cards({item, setItem}) {
+export function Cards({item, setItem, boxId}) {
+  return (
+    <>
+      {item.map((i, index) => (
+                      <div key={i.id}>
+                        <Item
+                            item={i}
+                            index={index}
+                    hi    />
+                          <button>x</button>
+                      </div>
+                  ))}
+      <NewItem boxId={boxId}/>
+    </>
+  )
+}
 
-        const addItem = title => {
-          const newItem = [...item, {title, completed: false, id: uuid.v4()}];
-          setItem(newItem)
-        }
-        const deleteItem = id => {
-          const deleted = item.reduce((acc, current) => {
-            if(current.id !== id){
-              return [...acc, current];
-            }
-            return [...acc, {...current, completed: true}]
-          }, [])
-          setItem(deleted)
-        }
-
-        return (
-          <>
-            {item.map((i, index) => (
-                            <div key={i.id}>
-                              <Item
-                                  item={i}
-                                  index={index}
-                              />
-                                <button onClick={() => deleteItem(i.id) }>x</button>
-                            </div>
-                        ))}
-            <NewItem addItem={addItem} />
-          </>
-        )
-      }
-
-export default function FirebaseWrapper() {
+export default function FirebaseWrapper({boxId}) {
   const [cards, setCards] = useState(null)
-  const retroRef = useMemo(() => databaseRef.ref('retros/1'), []);
+  let retro;
+  if(boxId === "1"){
+    retro = databaseRef.ref('retros/1/www');
+  } else if(boxId === "2"){
+    retro = databaseRef.ref('retros/1/!www');
+  } else if(boxId === "3"){
+    retro = databaseRef.ref('retros/1/questions');
+  } else {
+    retro = databaseRef.ref('retros/1/a');
+  }
+  const retroRef = useMemo(() => databaseRef.ref(retro), []);
   useEffect(() => {
     retroRef.on('value', function(snapshot) {
       const values = Object.values(snapshot.val())
