@@ -46,5 +46,5 @@ export default function FirebaseWrapper({boxId}) {
   if(!cards) {
     return <div>loading...</div>;
   };
-  return <Cards item={cards} setItem={()=> {}}/>
+  return <Cards item={cards} boxId={boxId} setItem={()=> {}}/>
 }

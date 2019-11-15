@@ -7,8 +7,16 @@ export default function NewItem({ addItem, boxId }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    let retroRef = databaseRef.ref('retros/1/questions');
-
+    let retroRef;
+    if(boxId === "1"){
+      retroRef = databaseRef.ref('retros/1/www');
+    } else if(boxId === "2"){
+      retroRef = databaseRef.ref('retros/1/!www');
+    } else if(boxId === "3"){
+      retroRef = databaseRef.ref('retros/1/questions');
+    } else {
+      retroRef = databaseRef.ref('retros/1/a');
+    }
     const item = {
       completed: false,
       id: uuid.v4(),
