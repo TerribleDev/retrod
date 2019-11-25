@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { databaseRef } from '../store/firebase.js'
 import Item from '../Items/Items.js';
 import NewItem from '../NewItem/NewItem.js'
+import DeleteItem from '../deleteItem/DeleteItem.js'
 
 export function Cards({item, setItem, boxId}) {
   return (
@@ -11,8 +12,8 @@ export function Cards({item, setItem, boxId}) {
                         <Item
                             item={i}
                             index={index}
-                    hi    />
-                          <button>x</button>
+                          />
+                          <DeleteItem item={i} boxId={boxId} />
                       </div>
                   ))}
       <NewItem boxId={boxId}/>

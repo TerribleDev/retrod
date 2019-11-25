@@ -8,21 +8,28 @@ export default function NewItem({ addItem, boxId }) {
   const handleSubmit = e => {
     e.preventDefault();
     let retroRef;
+    let url;
     if(boxId === "1"){
-      retroRef = databaseRef.ref('retros/1/www');
+      url = 'retros/1/www'
+      retroRef = databaseRef.ref(url);
     } else if(boxId === "2"){
-      retroRef = databaseRef.ref('retros/1/!www');
+      url = 'retros/1/!www'
+      retroRef = databaseRef.ref(url);
     } else if(boxId === "3"){
-      retroRef = databaseRef.ref('retros/1/questions');
+      url = 'retros/1/questions'
+      retroRef = databaseRef.ref(url);
     } else {
-      retroRef = databaseRef.ref('retros/1/a');
+      url = 'retros/1/a'
+      retroRef = databaseRef.ref(url);
     }
     const item = {
       completed: false,
       id: uuid.v4(),
       title: value,
     }
-    retroRef.push(item);
+    let objectId = retroRef.push(item);
+    console.log(objectId.key);
+    databaseRef.ref(url + `/` + objectId.key + `/id`).set(objectId.key)
     setValue("")
   }
   return (
