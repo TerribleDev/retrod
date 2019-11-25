@@ -12,6 +12,7 @@ export function Cards({item, setItem, boxId}) {
                         <Item
                             item={i}
                             index={index}
+                            boxId={boxId}
                           />
                           <DeleteItem item={i} boxId={boxId} />
                       </div>
