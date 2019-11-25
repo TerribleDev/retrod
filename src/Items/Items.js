@@ -1,15 +1,15 @@
 import React from 'react';
 import { databaseRef } from '../store/firebase.js'
 
-export default function Item({ item, boxId }) {
+export default function Item({ item, boxId, sprint }) {
   const handleClick = e => {
     let url;
     if(boxId === "1"){
-      url = 'retros/1/www/'
+      url = `retros/` + sprint + `/www/`
     } else if(boxId === "2"){
-      url = 'retros/1/!www/'
+      url = `retros/` + sprint + `/!www/`
     } else if(boxId === "3"){
-      url = 'retros/1/questions/'
+      url = `retros/` + sprint + `/questions/`
     } else {
       url = 'retros/1/a/'
     }

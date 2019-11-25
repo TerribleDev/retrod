@@ -1,17 +1,17 @@
 import React from 'react';
 import { databaseRef } from '../store/firebase.js'
 
-export default function DeleteItem({ item, boxId, objectId }) {
+export default function DeleteItem({ item, boxId, objectId, sprint }) {
   // const [value, setValue ] = useState("");
 
   const handleClick = e => {
     let retroRef;
     if(boxId === "1"){
-      retroRef = databaseRef.ref(`retros/1/www/` + item.id);
+      retroRef = databaseRef.ref(`retros/` + sprint + `/www/` + item.id);
     } else if(boxId === "2"){
-      retroRef = databaseRef.ref(`retros/1/!www/` + item.id);
+      retroRef = databaseRef.ref(`retros/` + sprint + `/!www/` + item.id);
     } else if(boxId === "3"){
-      retroRef = databaseRef.ref(`retros/1/questions/` + item.id);
+      retroRef = databaseRef.ref(`retros/` + sprint + `/questions/` + item.id);
     } else {
       retroRef = databaseRef.ref(`retros/1/a/` + item.id);
     }

@@ -4,7 +4,7 @@ import Item from '../Items/Items.js';
 import NewItem from '../NewItem/NewItem.js'
 import DeleteItem from '../deleteItem/DeleteItem.js'
 
-export function Cards({item, setItem, boxId}) {
+export function Cards({item, setItem, boxId, sprint}) {
   return (
     <>
       {item.map((i, index) => (
@@ -13,24 +13,25 @@ export function Cards({item, setItem, boxId}) {
                             item={i}
                             index={index}
                             boxId={boxId}
+                            sprint={sprint}
                           />
-                          <DeleteItem item={i} boxId={boxId} />
+                          <DeleteItem item={i} boxId={boxId} sprint={sprint}/>
                       </div>
                   ))}
-      <NewItem boxId={boxId}/>
+      <NewItem sprint={sprint} boxId={boxId}/>
     </>
   )
 }
 
-export default function FirebaseWrapper({boxId}) {
+export default function FirebaseWrapper({boxId, sprint}) {
   const [cards, setCards] = useState(null)
   let retro;
   if(boxId === "1"){
-    retro = databaseRef.ref('retros/1/www');
+    retro = databaseRef.ref(`retros/` + sprint + `/www`);
   } else if(boxId === "2"){
-    retro = databaseRef.ref('retros/1/!www');
+    retro = databaseRef.ref(`retros/` + sprint + `/!www`);
   } else if(boxId === "3"){
-    retro = databaseRef.ref('retros/1/questions');
+    retro = databaseRef.ref(`retros/` + sprint + `/questions`);
   } else {
     retro = databaseRef.ref('retros/1/a');
   }
@@ -48,5 +49,5 @@ export default function FirebaseWrapper({boxId}) {
   if(!cards) {
     return <div>loading...</div>;
   };
-  return <Cards item={cards} boxId={boxId} setItem={()=> {}}/>
+  return <Cards item={cards} boxId={boxId} sprint={sprint} setItem={()=> {}}/>
 }

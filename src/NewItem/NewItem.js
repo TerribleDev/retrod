@@ -2,24 +2,24 @@ import React, {useState} from 'react';
 import { databaseRef } from '../store/firebase.js'
 import uuid from "uuid";
 
-export default function NewItem({ addItem, boxId }) {
+export default function NewItem({ addItem, boxId, sprint }) {
   const [value, setValue ] = useState("");
-
+console.log(sprint);
   const handleSubmit = e => {
     e.preventDefault();
     let retroRef;
     let url;
     if(boxId === "1"){
-      url = 'retros/1/www'
+      url = `retros/` + sprint + `/www`;
       retroRef = databaseRef.ref(url);
     } else if(boxId === "2"){
-      url = 'retros/1/!www'
+      url = `retros/` + sprint + `/!www`;
       retroRef = databaseRef.ref(url);
     } else if(boxId === "3"){
-      url = 'retros/1/questions'
+      url = `retros/` + sprint + `/questions`;
       retroRef = databaseRef.ref(url);
     } else {
-      url = 'retros/1/a'
+      url = 'retros/1/a';
       retroRef = databaseRef.ref(url);
     }
     const item = {
