@@ -1,0 +1,9 @@
+.deleteButton{
+  color: darkred;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  font-size: .5em;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}

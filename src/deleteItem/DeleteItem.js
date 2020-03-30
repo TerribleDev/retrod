@@ -1,5 +1,6 @@
 import React from 'react';
 import { databaseRef } from '../store/firebase.js'
+import styles from "./deleteItem.module.css";
 
 export default function DeleteItem({ item, boxId, objectId, sprint }) {
   // const [value, setValue ] = useState("");
@@ -25,6 +26,6 @@ export default function DeleteItem({ item, boxId, objectId, sprint }) {
     retroRef.remove()
   }
   return (
-    <button onClick={handleClick}>x</button>
+    <button className={styles.deleteButton} onClick={handleClick}>DELETE</button>
   )
 }

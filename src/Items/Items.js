@@ -1,5 +1,6 @@
 import React from 'react';
 import { databaseRef } from '../store/firebase.js'
+import styles from "./items.module.css";
 
 export default function Item({ item, boxId, sprint }) {
   const handleClick = e => {
@@ -16,9 +17,9 @@ export default function Item({ item, boxId, sprint }) {
     databaseRef.ref(url + item.id + `/completed`).set(item.completed === false ? true : false)
   }
   return (
-    <div style={{ textDecoration: item.completed ? "line-through" : "" }}>
-      {item.title}
-      <button onClick={handleClick}>{item.completed === false ? 'done' : 'undo'}</button>
+    <div className={styles.flexItem}>
+      <p style={{ textDecoration: item.completed ? "line-through" : "" }}>{item.title}</p>
+      <button onClick={handleClick}>{item.completed === false ? <p className={styles.checkmark}>✓</p> : <p className={styles.redx}>x</p>}</button>
     </div>
   )
 }

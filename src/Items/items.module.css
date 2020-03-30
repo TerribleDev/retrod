@@ -1,0 +1,14 @@
+.flexItem{
+  display: flex;
+  justify-content: space-between;
+}
+button{
+  background: none;
+  border: none;
+}
+.checkmark{
+  color: green;
+}
+.redx{
+  color: red;
+}

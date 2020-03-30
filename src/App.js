@@ -2,10 +2,11 @@ import React, {useState, useEffect} from "react";
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from'firebase'
 import { Provider } from "react-redux";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import Boxes from "./boxes/Boxes";
-import styles from "./App.module.css";
+import SignedIn from "./SignedIn/SignedIn.js";
 import setupStore from "./store/setupStore.js";
+
 const config = {
   apiKey: "AIzaSyC5krz4RBiT87RK7cEidh3n-A4H63uGcyM",
   authDomain: "retrod-7e2cd.firebaseapp.com",
@@ -33,17 +34,7 @@ function App() {
     <div>
     {isSignedIn ? (
       <>
-      <h1>You're Signed In</h1>
-      <button onClick={() => firebase.auth().signOut()}>Sign Out</button>
-      <nav>
-      <Link onClick={() => setSprint(sprint + 1)} to={`/` + sprint}>Sprint (+))</Link>
-      </nav>
-      <h3>Sprint {sprint}</h3>
-        <div className={styles.grid}>
-          <Boxes sectionName={"What Went Well"}  sprint={sprint} boxId={'1'}/>
-          <Boxes sectionName={"What Could Be Better"}  sprint={sprint} boxId={'2'}/>
-          <Boxes sectionName={"Questions"} sprint={sprint} boxId={'3'}/>
-        </div>
+        <SignedIn/>
       </>
     ) : (
       <>

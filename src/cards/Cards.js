@@ -3,12 +3,14 @@ import { databaseRef } from '../store/firebase.js'
 import Item from '../Items/Items.js';
 import NewItem from '../NewItem/NewItem.js'
 import DeleteItem from '../deleteItem/DeleteItem.js'
+import styles from "./cards.module.css";
 
-export function Cards({item, setItem, boxId, sprint}) {
+export function Cards({item, setItem, boxId, sprint, sectionName}) {
   return (
     <>
+    <h3>{sectionName}</h3>
       {item.map((i, index) => (
-                      <div key={i.id}>
+                      <div className={styles.cardBackground} key={i.id}>
                         <Item
                             item={i}
                             index={index}
@@ -23,7 +25,7 @@ export function Cards({item, setItem, boxId, sprint}) {
   )
 }
 
-export default function FirebaseWrapper({boxId, sprint}) {
+export default function FirebaseWrapper({sectionName, boxId, sprint}) {
   const [cards, setCards] = useState(null)
   let retro;
   if(boxId === "1"){
@@ -49,5 +51,5 @@ export default function FirebaseWrapper({boxId, sprint}) {
   if(!cards) {
     return <div>loading...</div>;
   };
-  return <Cards item={cards} boxId={boxId} sprint={sprint} setItem={()=> {}}/>
+  return <Cards sectionName={sectionName} item={cards} boxId={boxId} sprint={sprint} setItem={()=> {}}/>
 }
