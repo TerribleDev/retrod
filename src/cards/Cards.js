@@ -5,12 +5,12 @@ import NewItem from '../NewItem/NewItem.js'
 import DeleteItem from '../deleteItem/DeleteItem.js'
 import styles from "./cards.module.css";
 
-export function Cards({item, setItem, boxId, sprint, sectionName}) {
+export function Cards({item, setItem, boxId, sprint, sectionName, sprint_id}) {
   return (
     <>
     <h3>{sectionName}</h3>
       {item.map((i, index) => (
-                      <div className={styles.cardBackground} key={i.id}>
+                      <div className={i.sprint_id === sprint ? styles.cardBackground : styles.hide} key={i.id}>
                         <Item
                             item={i}
                             index={index}

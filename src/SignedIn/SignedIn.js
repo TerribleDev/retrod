@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import firebase from'firebase'
-import { Link } from "@reach/router";
-import Boxes from "../boxes/Boxes";
+import React from "react";
+import firebase from'firebase';
+import SprintSelect from "../sprintSelect/SprintSelect"
 import styles from "./signedIn.module.css";
 
 export default function SignedIn() {
-  const [sprint, setSprint] = useState(1);
   return (
     <div>
       <div className={styles.alignRight}>
@@ -17,16 +15,7 @@ export default function SignedIn() {
           <button className={styles.signOutButton} onClick={() => firebase.auth().signOut()}>Sign Out</button>
         </div>
       </div>
-      <nav>
-      <Link onClick={() => setSprint(sprint + 1)} to={`/` + sprint}>Sprint (+))</Link>
-      {console.log(sprint)}
-      </nav>
-      <h3>Sprint {sprint}</h3>
-        <div className={styles.grid}>
-          <Boxes sectionName={"What Went Well"}  sprint={sprint} boxId={'1'}/>
-          <Boxes sectionName={"What Could Be Better"}  sprint={sprint} boxId={'2'}/>
-          <Boxes sectionName={"Questions"} sprint={sprint} boxId={'3'}/>
-        </div>
+      <SprintSelect />
     </div>
   )
 }

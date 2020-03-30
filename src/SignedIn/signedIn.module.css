@@ -1,12 +1,6 @@
 body{
   background: lightseagreen;
 }
-.grid{
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-column-gap: 1em;
-  margin: 1rem;
-}
 .alignRight{
   width: 100%;
   display: flex;

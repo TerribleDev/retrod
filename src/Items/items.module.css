@@ -8,6 +8,7 @@ button{
 }
 .checkmark{
   color: green;
+  cursor: pointer;
 }
 .redx{
   color: red;

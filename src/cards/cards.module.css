@@ -3,3 +3,6 @@
   margin: .5em;
   padding: 1em;
 }
+.hide{
+  display: none;
+}

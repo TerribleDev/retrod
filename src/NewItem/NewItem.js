@@ -4,7 +4,6 @@ import uuid from "uuid";
 
 export default function NewItem({ addItem, boxId, sprint }) {
   const [value, setValue ] = useState("");
-console.log(sprint);
   const handleSubmit = e => {
     e.preventDefault();
     let retroRef;
@@ -28,7 +27,6 @@ console.log(sprint);
       title: value,
     }
     let objectId = retroRef.push(item);
-    console.log(objectId.key);
     databaseRef.ref(url + `/` + objectId.key + `/id`).set(objectId.key)
     setValue("")
   }

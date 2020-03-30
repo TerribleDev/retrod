@@ -6,7 +6,7 @@ export default function Boxes({ sectionName, boxId, sprint }) {
   return (
     <div>
       <div className={styles.box}>
-        <Cards sectionName={sectionName} boxId={boxId} sprint={sprint}/>
+        <Cards sectionName={sectionName} boxId={boxId} sprint={sprint} />
       </div>
     </div>
   )
